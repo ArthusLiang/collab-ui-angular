@@ -1,0 +1,14 @@
+
+<div class="cui-input-group" [ngClass]="wrapperClasses">
+  <!-- Label Component Here -->
+  <input
+    class="cui-input"
+    [ngClass]="inputClasses"
+    value="{{value}}"
+    placeholder="{{placeholder}}"
+    [attr.disabled]="disabled ? '' :null"
+  />
+
+  <cui-spinner color='blue'></cui-spinner>
+</div>
+

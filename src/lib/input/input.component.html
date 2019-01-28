@@ -1,14 +1,17 @@
 
 <div class="cui-input-group" [ngClass]="wrapperClasses">
-  <!-- Label Component Here -->
+
+  <cui-label *ngIf="label" label="{{label}}"></cui-label>
   <input
     class="cui-input"
     [ngClass]="inputClasses"
-    value="{{value}}"
-    placeholder="{{placeholder}}"
+    [(ngModel)]="value"
+    [placeholder]="placeholder"
+    [readonly]="readOnly"
     [attr.disabled]="disabled ? '' :null"
   />
 
-  <cui-spinner color='blue'></cui-spinner>
-</div>
+<!--
+  <button (click) = "fireThis()"> button </button> -->
 
+</div>

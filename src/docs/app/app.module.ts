@@ -4,6 +4,10 @@ import { BadgeModule } from '@collab-ui/angular';
 import { IconModule } from '@collab-ui/angular';
 import { SpinnerModule } from '@collab-ui/angular';
 import { InputModule } from '@collab-ui/angular';
+import { InputErrorModule } from '@collab-ui/angular';
+import { LabelModule } from '@collab-ui/angular';
+import { InputHelperModule } from '@collab-ui/angular';
+
 import { LoadingModule } from '@collab-ui/angular';
 import { ButtonModule } from '@collab-ui/angular';
 
@@ -22,6 +26,10 @@ import { PlaygroundComponent } from './playground/playground.component';
     BadgeModule,
     IconModule,
     SpinnerModule,
+    InputModule,
+    InputErrorModule,
+    LabelModule,
+
     InputModule
     ButtonModule,
     LoadingModule,

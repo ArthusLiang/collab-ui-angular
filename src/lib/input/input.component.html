@@ -1,17 +1,50 @@
 
 <div class="cui-input-group" [ngClass]="wrapperClasses">
+  <cui-label *ngIf="label" [label]="label"></cui-label>
 
-  <cui-label *ngIf="label" label="{{label}}"></cui-label>
   <input
+    *ngIf="!showSecondaryLabel; else secondary"
     class="cui-input"
     [ngClass]="inputClasses"
     [(ngModel)]="value"
+
     [placeholder]="placeholder"
     [readonly]="readOnly"
     [attr.disabled]="disabled ? '' :null"
   />
 
-<!--
-  <button (click) = "fireThis()"> button </button> -->
+  <ng-template #secondary>
+    <div class="cui-label__secondary-label-container">
+      <input
+        class="cui-input"
+        [ngClass]="inputClasses"
+        [(ngModel)]="value"
 
+        [placeholder]="placeholder"
+        [readonly]="readOnly"
+        [attr.disabled]="disabled ? '' :null"
+      />
+
+      <cui-label
+        className="cui-label__secondary-label"
+        [label]="secondaryLabel"
+        [theme]="theme"
+      >
+      </cui-label>
+    </div>
+  </ng-template>
+
+  <ng-container *ngIf="errors">
+    <cui-input-error
+      *ngFor="let error of errors"
+      [error]="error"
+    >
+    </cui-input-error>
+  </ng-container>
+
+  <cui-input-helper
+    *ngIf="inputHelpText"
+    [message]="inputHelpText"
+  ></cui-input-helper>
+<!-- <button (click) = "fireThis()"> button </button> -->
 </div>

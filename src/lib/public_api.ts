@@ -10,5 +10,8 @@ export * from './label';
 export * from './input-error';
 export * from './input-helper';
 
+export * from './input-d';
+export * from './input-wrapper-container';
+
 export * from './loading';
 export * from './button';

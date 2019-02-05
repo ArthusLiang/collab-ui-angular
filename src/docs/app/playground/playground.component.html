@@ -1,38 +1,111 @@
+<ng-template cui-input label="Test Label">
+  <input type="text" class='cui-input small-3'>
+</ng-template>
 
 
-<cui-input
+<ng-template cui-input label="Test Label" inputHelpText="Help Text Message Here">
+  <input type="text" class='cui-input small-3' [(ngModel)]="name" >
+</ng-template>
+
+
+<ng-template cui-input secondaryLabel="Secondary Label">
+  <input type="text" class='cui-input small-3' >
+</ng-template>
+
+
+<ng-template cui-input label="PlaceHolder Label">
+  <input type="text" class='cui-input small-3' placeholder="Regular input Placeholder Text" >
+</ng-template>
+
+
+                <!-- Cannot use microsyntax examples below *cui-input, @Inputs do not work on <input> -->
+                <!-- https://angular.io/guide/structural-directives#microsyntax -->
+
+<!-- <input
+  *cui-input
+  type="text"
+  label='Default Label'
+  [(ngModel)]="name"
+  inputHelpText="Help Text Message Here"
+>
+
+
+<input
+  *cui-input
+  type="text"
+  label='Default Label'
+  placeholder="Placeholder Text"
+>
+
+
+<input
+  *cui-input
+  type="text"
+  label='Default Label'
+  value="Read Only"
+  readonly
+> -->
+
+
+<!-- <input
+  *cui-input
+  type="text"
+  class="small-3"
+> -->
+
+
+<!-- <input
+  *cui-input
+  type="text"
+  placeholder="Placeholder Text"
+> -->
+
+
+
+
+
+
+<!-- Component Examples -->
+
+<!-- <cui-input
   value='Default Value'
   inputSize="small-5"
   label="Default Label"
-  secondaryLabel='Secondary Label!!'
 >
-</cui-input>
+</cui-input> -->
 
 
-<cui-input
+<!-- <cui-input
+  inputSize="small-5"
+  label="Default Label"
+>
+</cui-input> -->
+
+
+<!-- <cui-input
   value='Default Value'
   inputSize="small-5"
   label="Default Label"
   inputHelpText="this is a help text message"
 >
-</cui-input>
+</cui-input> -->
 
 
-<cui-input
+<!-- <cui-input
   inputSize="small-5"
   label="Default Label"
+  type="password"
 >
-</cui-input>
+</cui-input> -->
 
 
-<cui-input
+<!-- <cui-input
 
   inputSize="small-5"
   label="Error Label"
   [errorArr]="[{error: 'This is where the error message would be.', type: 'error'}]"
 >
 </cui-input>
-
 
 
 <cui-input
@@ -58,10 +131,8 @@
   inputSize="small-5"
   [disabled]="false"
   label="Placeholder label"
-
 >
 </cui-input>
-
 
 
 <cui-input
@@ -72,7 +143,6 @@
 >
 </cui-input>
 
-
 <cui-input
   value='Read Only'
   [readOnly]="true"
@@ -80,7 +150,7 @@
   label="Read Only Label"
 >
 </cui-input>
-
+ -->
 
 
 

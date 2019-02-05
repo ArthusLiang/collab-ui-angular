@@ -8,6 +8,9 @@ import { InputErrorModule } from '@collab-ui/angular';
 import { LabelModule } from '@collab-ui/angular';
 import { InputHelperModule } from '@collab-ui/angular';
 
+import { FormsModule } from '@angular/forms';
+import { InputDModule } from '@collab-ui/angular';
+import { InputWrapperContainerModule } from '@collab-ui/angular';
 import { LoadingModule } from '@collab-ui/angular';
 import { ButtonModule } from '@collab-ui/angular';
 
@@ -26,9 +29,14 @@ import { PlaygroundComponent } from './playground/playground.component';
     BadgeModule,
     IconModule,
     SpinnerModule,
-    InputModule,
+    InputModule, //TODO: Remove
     InputErrorModule,
     LabelModule,
+
+    InputDModule,
+    InputWrapperContainerModule,
+
+    FormsModule
 
     InputModule
     ButtonModule,

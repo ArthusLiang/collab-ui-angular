@@ -1,0 +1,32 @@
+
+
+<div class="cui-input-group" *ngIf="!secondaryLabel">
+  <cui-label *ngIf="label" [label]="label"></cui-label>
+  <!-- TODO: Remove Ref -->
+  <ng-container
+    *ngTemplateOutlet="template"
+    #testRef
+  > </ng-container>
+  <!-- Error Input Will Go Here -->
+
+  <!-- Helper Text -->
+  <cui-input-helper *ngIf="inputHelpText" [message]="inputHelpText"> </cui-input-helper>
+</div>
+
+
+<div class="cui-input-group" *ngIf="secondaryLabel" >
+    <div class="cui-label__secondary-label-container">
+      <ng-container *ngTemplateOutlet="template"> </ng-container>
+      <cui-label
+        className="cui-label__secondary-label"
+        [label]="secondaryLabel"
+        [theme]="theme"
+      >
+      </cui-label>
+    </div>
+    <!-- Error Input Here -->
+
+    <!-- Helper Text -->
+    <cui-input-helper *ngIf="inputHelpText" [message]="inputHelpText"> </cui-input-helper>
+</div>
+

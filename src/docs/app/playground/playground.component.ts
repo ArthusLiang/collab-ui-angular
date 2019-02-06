@@ -11,6 +11,6 @@ export class PlaygroundComponent implements OnInit {
 
   ngOnInit() {}
 
-  name: string = 'ng model test';
+  dataModel: string = 'ngModel Test';
 
 }

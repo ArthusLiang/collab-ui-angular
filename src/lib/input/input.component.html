@@ -1,9 +1,10 @@
 
+
 <div class="cui-input-group" [ngClass]="wrapperClasses">
   <cui-label *ngIf="label" [label]="label"></cui-label>
 
   <input
-    *ngIf="!showSecondaryLabel; else secondary"
+    *ngIf="!secondaryLabel"
     class="cui-input"
     [ngClass]="inputClasses"
     [(ngModel)]="value"
@@ -11,29 +12,30 @@
     [placeholder]="placeholder"
     [readonly]="readOnly"
     [attr.disabled]="disabled ? '' :null"
+    [type]="type"
   />
 
-  <ng-template #secondary>
-    <div class="cui-label__secondary-label-container">
-      <input
-        class="cui-input"
-        [ngClass]="inputClasses"
-        [(ngModel)]="value"
+  <!-- Secondary Label -->
+  <div class="cui-label__secondary-label-container" *ngIf="secondaryLabel">
+    <input
+      class="cui-input"
+      [ngClass]="inputClasses"
+      [(ngModel)]="value"
+      [type]="type"
+      [placeholder]="placeholder"
+      [readonly]="readOnly"
+      [attr.disabled]="disabled ? '' :null"
+    />
 
-        [placeholder]="placeholder"
-        [readonly]="readOnly"
-        [attr.disabled]="disabled ? '' :null"
-      />
+    <cui-label
+      className="cui-label__secondary-label"
+      [label]="secondaryLabel"
+      [theme]="theme"
+    >
+    </cui-label>
+  </div>
 
-      <cui-label
-        className="cui-label__secondary-label"
-        [label]="secondaryLabel"
-        [theme]="theme"
-      >
-      </cui-label>
-    </div>
-  </ng-template>
-
+  <!-- Error Input -->
   <ng-container *ngIf="errors">
     <cui-input-error
       *ngFor="let error of errors"
@@ -42,9 +44,10 @@
     </cui-input-error>
   </ng-container>
 
+  <!-- Helper Text -->
   <cui-input-helper
     *ngIf="inputHelpText"
     [message]="inputHelpText"
-  ></cui-input-helper>
-<!-- <button (click) = "fireThis()"> button </button> -->
+  >
+  </cui-input-helper>
 </div>

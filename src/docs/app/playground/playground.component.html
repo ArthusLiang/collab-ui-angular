@@ -1,21 +1,102 @@
-<ng-template cui-input label="Test Label">
+<!-- Component Examples -->
+<cui-input
+  [(ngModel)]="dataModel"
+  inputSize="small-5"
+  label="Default Label"
+>
+</cui-input>
+
+
+<cui-input
+  inputSize="small-5"
+  inputHelpText="this is a help text message"
+>
+</cui-input>
+
+
+<cui-input
+  inputSize="small-5"
+  label="Password Input"
+  type="password"
+>
+</cui-input>
+
+
+<cui-input
+  [(ngModel)]="dataModel"
+  inputSize="small-5"
+  secondaryLabel="Secondary Label"
+>
+</cui-input>
+
+
+<cui-input
+  inputSize="small-5"
+  label="Error Label"
+  [errorArr]="[{error: 'This is where the error message would be.', type: 'error'}]"
+>
+</cui-input>
+
+
+<cui-input
+  inputSize="small-5"
+  label="Success Label"
+  [errorArr]="[{error: 'This is where the success message would be.', type: 'success'}]"
+>
+</cui-input>
+
+<cui-input
+  inputSize="small-5"
+  label="Warning Label"
+  [errorArr]="[{error: 'This is where the success message would be.', type: 'warning'}]"
+>
+</cui-input>
+
+
+
+<cui-input
+  inputSize="small-5"
+  [disabled]="true"
+  label="Disabled Input"
+  placeholder="Place Holder Text"
+>
+</cui-input>
+
+
+<cui-input
+  inputSize="small-5"
+  [readOnly]="true"
+  label="Read Only Input"
+  [(ngModel)]="dataModel"
+>
+</cui-input>
+
+
+{{dataModel}}
+
+
+
+
+<!-- <ng-template cui-input label="Test Label">
   <input type="text" class='cui-input small-3'>
-</ng-template>
+</ng-template> -->
 
 
-<ng-template cui-input label="Test Label" inputHelpText="Help Text Message Here">
-  <input type="text" class='cui-input small-3' [(ngModel)]="name" >
-</ng-template>
+<!-- <input cui-input type='text' label="Test Label"> -->
+
+<!-- <ng-template cui-input label="Test Label" inputHelpText="Help Text Message Here">
+  <input type="text" class='cui-input small-3 error' [(ngModel)]="name" >
+</ng-template> -->
 
 
-<ng-template cui-input secondaryLabel="Secondary Label">
+<!-- <ng-template cui-input secondaryLabel="Secondary Label">
   <input type="text" class='cui-input small-3' >
-</ng-template>
+</ng-template> -->
 
 
-<ng-template cui-input label="PlaceHolder Label">
+<!-- <ng-template cui-input label="PlaceHolder Label">
   <input type="text" class='cui-input small-3' placeholder="Regular input Placeholder Text" >
-</ng-template>
+</ng-template> -->
 
 
                 <!-- Cannot use microsyntax examples below *cui-input, @Inputs do not work on <input> -->
@@ -59,98 +140,4 @@
   type="text"
   placeholder="Placeholder Text"
 > -->
-
-
-
-
-
-
-<!-- Component Examples -->
-
-<!-- <cui-input
-  value='Default Value'
-  inputSize="small-5"
-  label="Default Label"
->
-</cui-input> -->
-
-
-<!-- <cui-input
-  inputSize="small-5"
-  label="Default Label"
->
-</cui-input> -->
-
-
-<!-- <cui-input
-  value='Default Value'
-  inputSize="small-5"
-  label="Default Label"
-  inputHelpText="this is a help text message"
->
-</cui-input> -->
-
-
-<!-- <cui-input
-  inputSize="small-5"
-  label="Default Label"
-  type="password"
->
-</cui-input> -->
-
-
-<!-- <cui-input
-
-  inputSize="small-5"
-  label="Error Label"
-  [errorArr]="[{error: 'This is where the error message would be.', type: 'error'}]"
->
-</cui-input>
-
-
-<cui-input
-
-  inputSize="small-5"
-  label="Warning Label"
-  [errorArr]="[{error: 'This is where the warning message would be.', type: 'warning'}]"
->
-</cui-input>
-
-
-<cui-input
-
-  inputSize="small-5"
-  label="Success Label"
-  [errorArr]="[{error: 'This is where the success message would be.', type: 'success'}]"
->
-</cui-input>
-
-
-<cui-input
-  placeholder='Placeholder Text'
-  inputSize="small-5"
-  [disabled]="false"
-  label="Placeholder label"
->
-</cui-input>
-
-
-<cui-input
-  value='testing default text'
-  [disabled]="true"
-  inputSize="small-5"
-  label="Disabled Label"
->
-</cui-input>
-
-<cui-input
-  value='Read Only'
-  [readOnly]="true"
-  inputSize="small-5"
-  label="Read Only Label"
->
-</cui-input>
- -->
-
-
 

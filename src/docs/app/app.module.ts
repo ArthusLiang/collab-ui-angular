@@ -29,16 +29,12 @@ import { PlaygroundComponent } from './playground/playground.component';
     BadgeModule,
     IconModule,
     SpinnerModule,
-    InputModule, //TODO: Remove
+    InputModule,
     InputErrorModule,
     LabelModule,
-
-    InputDModule,
+    InputDModule,  //TODO: Remove Directive and Wrapper
     InputWrapperContainerModule,
-
-    FormsModule
-
-    InputModule
+    FormsModule,
     ButtonModule,
     LoadingModule,
   ],

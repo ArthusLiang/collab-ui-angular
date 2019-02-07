@@ -8,11 +8,14 @@
     class="cui-input"
     [ngClass]="inputClasses"
     [(ngModel)]="value"
-
     [placeholder]="placeholder"
     [readonly]="readOnly"
     [attr.disabled]="disabled ? '' :null"
     [type]="type"
+    (blur)="onBlur($event)"
+    (focus)="onFocus($event)"
+    (keydown)="onKeyDown($event)"
+    (mousedown)="onMouseDown($event)"
   />
 
   <!-- Secondary Label -->
@@ -25,6 +28,10 @@
       [placeholder]="placeholder"
       [readonly]="readOnly"
       [attr.disabled]="disabled ? '' :null"
+      (blur)="onBlur($event)"
+      (focus)="onFocus($event)"
+      (keydown)="onKeyDown($event)"
+      (mousedown)="onMouseDown($event)"
     />
 
     <cui-label

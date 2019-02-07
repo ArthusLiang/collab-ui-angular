@@ -5,6 +5,7 @@ import { InputComponent } from './input.component';
 import { LabelModule } from '../label';
 import { InputErrorModule } from '../input-error'
 import { InputHelperModule } from '../input-helper'
+import { IconModule } from '../icon'
 import { FormsModule } from '@angular/forms';
 
 @NgModule({
@@ -15,7 +16,8 @@ import { FormsModule } from '@angular/forms';
     FormsModule,
     LabelModule,
     InputErrorModule,
-    InputHelperModule
+    InputHelperModule,
+    IconModule
   ],
   exports: [InputComponent]
 })

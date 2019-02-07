@@ -1,5 +1,4 @@
-import { Component, OnInit, Input, OnChanges, SimpleChanges, forwardRef} from '@angular/core';
-import { SpinnerComponent } from '../spinner';
+import { Component, OnInit, Input, OnChanges, SimpleChanges, forwardRef, Output, EventEmitter} from '@angular/core';
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
 
 const cb = () => {};
@@ -17,7 +16,7 @@ const CUSTOM_INPUT_CONTROL_VALUE_ACCESSOR: any = {
 })
 
 export class InputComponent implements ControlValueAccessor {
-  //internal data model
+  //internal value model
   private innerValue: any = '';
 
   private onTouchedCallback: () => void = cb;
@@ -35,8 +34,29 @@ export class InputComponent implements ControlValueAccessor {
     }
   }
 
-  onBlur() {
-    this.onTouchedCallback();
+  onBlur(event) {
+    this.handleBlur.emit()
+    event.stopPropagation();
+  }
+
+  onFocus(event) {
+    if(this.disabled) {
+      event.stopPropagation();
+      return;
+    }
+    this.handleFocus.emit();
+  }
+
+  onKeyDown(event){
+    this.handleKeyDown.emit();
+  }
+
+  onMouseDown(event){
+    if(this.disabled) {
+      event.stopPropagation();
+      return;
+    }
+    this.handleMouseDown.emit();
   }
 
   //From ControlValueAccessor interface
@@ -69,19 +89,39 @@ export class InputComponent implements ControlValueAccessor {
     );
   };
 
-  @Input() public className: string;
+  /** @option Optional css class string | ''  */
+  @Input() public class: string = '';
+  /** @option Sets the disabled attribute of the Input | false */
   @Input() public disabled: boolean = false;
-  @Input() public errorArr: any[]; //[] of objects with error type and error message keys
-  @Input() public inputClassName: string;
-  @Input() public inputHelpText: string;
-  @Input() public inputSize: string;
-  @Input() public label: string;
-  @Input() public nestedLevel;
+  /** @option Array of objects with error type and error message */
+  @Input() public errorArr: any[];
+  /** @option Input css class name string */
+  @Input() public inputClass: string = '';
+  /** @option Help Text to appear under the input | '' */
+  @Input() public inputHelpText: string = '';
+  /** @option Overall input group size | '' */
+  @Input() public inputSize: string = '';
+  /** @option Input label text | '' */
+  @Input() public label: string = '';
+  /** @option Placeholder text to display when Input is empty | '' */
   @Input() public placeholder: string = "";
+  /** @option Determines if Input can be edited | false */
   @Input() public readOnly: boolean = false;
-  @Input() public secondaryLabel: string;
+  /** @option Secondary Input label | ''  */
+  @Input() public secondaryLabel: string = '';
+  /** @option Input color theme | '' */
   @Input() public theme: string;
+  /** @option Input type | 'text' */
   @Input() public type: string = "text";
+
+  /** @option function when clicked outside of input */
+  @Output() handleBlur: EventEmitter<any> = new EventEmitter();
+  /** @option function when input is focused */
+  @Output() handleFocus: EventEmitter<any> = new EventEmitter();
+  /** @option function when key down on input */
+  @Output() handleKeyDown: EventEmitter<any> = new EventEmitter();
+  /** @option function when mouse down on input */
+  @Output() handleMouseDown: EventEmitter<any> = new EventEmitter();
 
   public errorType;
   public errors;
@@ -108,8 +148,7 @@ export class InputComponent implements ControlValueAccessor {
       ['disabled']: this.disabled,
       ['cui-input-group--' + this.theme]: this.theme,
       [this.errorType]: this.errorType,
-      ['cui-input--nested-' + this.nestedLevel]: this.nestedLevel,
-      [this.className]: this.className,
+      [this.class]: this.class,
     };
   }
 
@@ -118,12 +157,133 @@ export class InputComponent implements ControlValueAccessor {
       [this.inputSize + ' columns']: this.inputSize,
       ['cui-input-group--' + this.theme]: this.theme,
       [this.errorType]: this.errorType,
-      ['cui-input--nested-' + this.nestedLevel]: this.nestedLevel,
-
-      [this.inputClassName]: this.inputClassName,
+      [this.inputClass]: this.inputClass,
       ['read-only']: this.readOnly,
       ['disabled']: this.disabled,
       ['dirty']: this.value
     };
   }
 }
+
+/**
+* @component input
+* @section default
+* @angular
+*
+
+<div>
+  <cui-input
+    [(ngModel)]="dataModel"
+    inputSize="small-5"
+    label="Default Input"
+  >
+  </cui-input>
+</div>
+*/
+
+/**
+* @component input
+* @section error
+* @angular
+*
+<div>
+  <cui-input
+    inputSize="small-5"
+    label="Error (Error) Input"
+    [errorArr]="[{error: 'This is where the error message would be.', type: 'error'}]"
+  >
+  </cui-input>
+</div>
+*/
+
+/**
+* @component input
+* @section warning
+* @angular
+*
+<div>
+  <cui-input
+    inputSize="small-5"
+    label="Error (Warning) Input"
+    [errorArr]="[{error: 'This is where the success message would be.', type: 'warning'}]"
+  >
+  </cui-input>
+</div>
+*/
+
+/**
+* @component input
+* @section success
+* @angular
+*
+<div>
+  <cui-input
+    inputSize="small-5"
+    label="Error (Success) Input"
+    [errorArr]="[{error: 'This is where the success message would be.', type: 'success'}]"
+  >
+  </cui-input>
+</div>
+*/
+
+/**
+* @component input
+* @section disabled
+* @angular
+*
+<div>
+  <cui-input
+    inputSize="small-5"
+    [disabled]="true"
+    label="Disabled Input"
+  >
+  </cui-input>
+</div>
+*/
+
+/**
+* @component input
+* @section read-only
+* @angular
+*
+<div>
+  <cui-input
+    inputSize="small-5"
+    [readOnly]="true"
+    label="Read Only Input"
+    [(ngModel)]="dataModel"
+  >
+  </cui-input>
+</div>
+*/
+
+/**
+* @component input
+* @section help-text
+* @angular
+*
+<div>
+  <cui-input
+    inputSize="small-5"
+    inputHelpText="Help Text"
+    label="Help Text Input"
+  >
+  </cui-input>
+</div>
+*/
+
+/**
+* @component input
+* @section secondary-label
+* @angular
+*
+<div>
+  <cui-input
+    inputSize="small-5"
+    secondaryLabel="Secondary Label"
+  >
+  </cui-input>
+</div>
+*/
+
+

@@ -19,7 +19,17 @@ export class PlaygroundComponent implements OnInit {
   }
 
 
-  ngOnInit() {}
+  ngOnInit() {
+    console.log('init: ', this.isSelected);
 
+  }
+
+
+  onClick(){
+    //console.log('selected: ', this.selected);
+    console.log('selected: ', this.isSelected);
+
+  }
 
 }
+

@@ -1,0 +1,33 @@
+
+  <div
+    class="cui-input-group cui-checkbox"
+    [ngClass]="wrapperClasses"
+    (click)="toggleCheckbox($event)"
+  >
+
+    <input
+      type="checkbox"
+      class="cui-input cui-checkbox__input"
+      [ngClass]="inputClasses"
+      [(ngModel)]="selectedItem"
+      [attr.disabled]="disabled ? '' :null"
+      [attr.aria-checked]="selectedItem"
+      id="htmlId"
+      name="name"
+      [required]="required"
+    />
+
+    <label
+      *ngIf="label"
+      class="cui-checkbox__label"
+      for="htmlId"
+    >
+      <span>{{label}}</span>
+    </label>
+
+    <ng-content></ng-content>
+  </div>
+
+
+
+

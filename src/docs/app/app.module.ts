@@ -17,6 +17,7 @@ import { InputHelperModule } from '@collab-ui/angular';
 import { FormsModule } from '@angular/forms';
 import { LoadingModule } from '@collab-ui/angular';
 import { ButtonModule } from '@collab-ui/angular';
+import { CheckboxModule } from '@collab-ui/angular';
 
 import { ModalModule } from '@collab-ui/angular';
 import { ModalBodyModule } from '@collab-ui/angular';
@@ -53,9 +54,11 @@ import { ExamplesModule } from 'src/lib/examples.module';
     InputModule,
     InputErrorModule,
     LabelModule,
+    InputHelperModule,
     FormsModule,
     ButtonModule,
     LoadingModule,
+    CheckboxModule
     ModalBodyModule,
     ModalFooterModule,
     ModalHeaderModule,

@@ -17,6 +17,7 @@ export * from './input-helper';
 export * from './loading';
 export * from './button';
 export * from './checkbox';
+export * from './radio';
 export * from './modal';
 export * from './modal-header';
 export * from './modal-body';

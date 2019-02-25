@@ -14,10 +14,11 @@ import { InputErrorModule } from '@collab-ui/angular';
 import { LabelModule } from '@collab-ui/angular';
 import { InputHelperModule } from '@collab-ui/angular';
 
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LoadingModule } from '@collab-ui/angular';
 import { ButtonModule } from '@collab-ui/angular';
 import { CheckboxModule } from '@collab-ui/angular';
+import { RadioModule } from '@collab-ui/angular';
 
 import { ModalModule } from '@collab-ui/angular';
 import { ModalBodyModule } from '@collab-ui/angular';
@@ -56,8 +57,11 @@ import { ExamplesModule } from 'src/lib/examples.module';
     LabelModule,
     InputHelperModule,
     FormsModule,
+    ReactiveFormsModule,
     ButtonModule,
     LoadingModule,
+    CheckboxModule,
+    RadioModule
     CheckboxModule
     ModalBodyModule,
     ModalFooterModule,

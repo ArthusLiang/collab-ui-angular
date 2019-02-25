@@ -1,1 +1,245 @@
-<p>Your playground code goes here</p>
+<form [formGroup]="myForm">
+  <cui-radio
+    name="cisco"
+    label="Option 1"
+    value="Option 1"
+    formControlName="radioControl"
+    (onClick) = "fireThis()"
+    htmlId="opt1">
+  </cui-radio>
+
+  <cui-radio
+    name="cisco"
+    label="Option 2"
+    value="Option 2"
+    formControlName="radioControl"
+    htmlId="opt2"
+    nestedLevel="1">
+  </cui-radio>
+
+  <cui-radio
+    name="cisco"
+    label="Option 3"
+    value="Option 3"
+    formControlName="radioControl"
+    htmlId="opt3"
+    nestedLevel="2">
+  </cui-radio>
+
+  <cui-radio
+    name="cisco"
+    label="Option 4"
+    value="Option 4"
+    formControlName="radioControl"
+    htmlId="opt4"
+    [disabled]="true">
+  </cui-radio>
+
+  <cui-radio
+    name="cisco"
+    label="Option 5"
+    value="Option 5"
+    formControlName="radioControl"
+    htmlId="opt5">
+  </cui-radio>
+</form>
+
+
+<h3>Selected Radio Value: {{ myForm.value.radioControl }}</h3>
+
+<button (click) ="findSelected()" >Find Selected</button>
+
+
+
+
+
+<!-- <p>
+    <input type="radio" value="male" name="gender" [ngModel]="test" > Male
+    <input type="radio" value="female" name="gender" [ngModel]="test" > Female
+</p> -->
+
+
+<!-- <button (click) = "findGender()">fire</button> -->
+
+
+<!-- Angular Form Control Input -->
+  <!-- <cui-input
+    [(ngModel)]="dataModel"
+    inputSize="small-5"
+    label="Angular Form Control Error Validators"
+    email
+    required
+    minlength="8"
+    maxlength="12"
+    [errorObj]="errorObj"
+    name="name"
+  >
+  </cui-input> -->
+
+  <!-- errorObj = {
+    'required': 'This field is required',
+    'minlength': 'This field should be more than 8 chars',
+    'maxlength': 'This field cant be more than 10 chars',
+    'email': "Not a valid email"
+  } -->
+
+  <!-- <div style="clear:both"> -->
+
+
+
+ <!-- Default Checkbox -->
+<!-- <cui-checkbox
+  label="default check box"
+  [(selectedItem)]="isSelected12"
+  (onSelectItem)="funcToCallInParent12()"
+  name="testCheckBox1"
+  htmlId="test"
+>
+</cui-checkbox> -->
+
+
+
+<!-- Disabled Checkbox -->
+
+<!-- <cui-checkbox
+  label="disabled checkbox"
+  [disabled]="true"
+  [(selectedItem)]="isSelected11"
+  (onSelectItem)="funcToCallInParent11()"
+  name="testCheckBox2"
+>
+</cui-checkbox> -->
+
+
+
+<!-- Example with Helper on Checkbox -->
+
+<!-- <div class="cui-checkbox-group">
+  <cui-checkbox
+    label="test checkbox label"
+    [(selectedItem)]="isSelected3"
+    (onSelectItem)="funcToCallInParent3()"
+    name="testCheckbox4"
+  >
+
+    <cui-input-helper
+      message="I'm here to help"
+      className="cui-checkbox-help"
+    >
+    </cui-input-helper>
+
+  </cui-checkbox>
+</div> -->
+
+
+<!-- Required Checkbox -->
+
+<!-- <cui-checkbox
+  label="Required"
+  [required]="true"
+  [(selectedItem)]="isSelected4"
+  (onSelectItem)="funcToCallInParent4()"
+  name="testCheckbox5"
+>
+</cui-checkbox> -->
+
+
+<!-- Indeterminate Checkbox -->
+
+<!-- <cui-checkbox
+  label="indeterminate label"
+  [indeterminate]="true"
+  [(selectedItem)]="isSelected5"
+  (onSelectItem)="funcToCallInParent5()"
+  name="testCheckbox6"
+>
+</cui-checkbox> -->
+
+
+<!-- Nested Checkboxes -->
+<!-- <cui-checkbox
+  label="Parent Checkbox"
+  [(selectedItem)]="isSelected6"
+  (onSelectItem)="funcToCallInParent6()"
+  name="isSelected"
+>
+</cui-checkbox>
+
+<cui-checkbox
+  label="Child Checkbox Nested 1 Level"
+  [(selectedItem)]="isSelected7"
+  (onSelectItem)="funcToCallInParent7()"
+  name="isSelected"
+  [nestedLevel]="1"
+>
+</cui-checkbox>
+
+<cui-checkbox
+  label="Child Checkbox Nested 2 Levels"
+  [(selectedItem)]="isSelected8"
+  (onSelectItem)="funcToCallInParent8()"
+  name="isSelected"
+  [nestedLevel]="2"
+>
+</cui-checkbox>
+
+<cui-checkbox
+  label="Child Checkbox Nested 3 Levels"
+  [(selectedItem)]="isSelected9"
+  (onSelectItem)="funcToCallInParent9()"
+  name="isSelected"
+  [nestedLevel]="3"
+>
+</cui-checkbox>
+
+
+</div> -->
+
+
+  <!-- <cui-checkbox
+    label="disabled this one!"
+    [(selectedItem)]="isSelected"
+    htmlId="testCheckBox1"
+    name="testCheckBox1"
+    [disabled]="true"
+    (click) = "!disabled && isSelected = !isSelected"
+  >
+  </cui-checkbox> -->
+
+
+
+
+  <!-- Checkbox Group -->
+
+
+
+
+<!-- <div class="cui-checkbox-group">
+  <cui-checkbox
+    label="me"
+    [(selectedItem)]="isSelected"
+    (onSelectItem)="funcToCallInParent()"
+  >
+  </cui-checkbox>
+  <cui-checkbox
+    label="you"
+    [(selectedItem)]="isSelected"
+    (onSelectItem)="funcToCallInParent()"
+  >
+  </cui-checkbox>
+  <cui-checkbox
+    label="us"
+    [(selectedItem)]="isSelected"
+    (onSelectItem)="funcToCallInParent()"
+  >
+  </cui-checkbox>
+</div> -->
+
+
+
+
+<!-- Create Correct way for radioTest
+
+selecteditem needs to be changed to checked
+
+need to add name to the group loop forEach -->

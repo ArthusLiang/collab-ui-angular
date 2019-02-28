@@ -9,6 +9,10 @@ import { Validators } from '@angular/forms';
 })
 export class PlaygroundComponent {
 
+  checkedValues: string[] = ['val1','val2'];
+
+  checked: boolean = false;
+
   dataModel: string = '';
 
   errorObj = {
@@ -24,19 +28,19 @@ export class PlaygroundComponent {
     this.myForm = this.fb.group({
       radioControl: ['Option 2', [Validators.required]]
     })
-    //TODO: Remove
+
     console.log(this.myForm.value)
+
+    console.log(this.checkedValues);
+
   }
-
-
 
   findSelected(){
     console.log(this.myForm.value);
   }
 
-
   fireThis(){
-    alert('hi');
+    alert('hit');
   }
 
 

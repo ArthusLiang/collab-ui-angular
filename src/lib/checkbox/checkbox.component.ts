@@ -1,7 +1,7 @@
-import { Component, OnInit, Input, forwardRef,OnChanges, SimpleChanges, Output, EventEmitter } from '@angular/core';
-import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
+import { Component, Input, forwardRef, Output, EventEmitter, ChangeDetectorRef } from '@angular/core';
+import { NG_VALUE_ACCESSOR, ControlValueAccessor, FormControl } from '@angular/forms';
 
-const CUSTOM_INPUT_CONTROL_VALUE_ACCESSOR: any = {
+const CUSTOM_CHECKBOX_CONTROL_VALUE_ACCESSOR: any = {
   provide: NG_VALUE_ACCESSOR,
   useExisting: forwardRef(() => CheckboxComponent),
   multi: true
@@ -11,55 +11,115 @@ const CUSTOM_INPUT_CONTROL_VALUE_ACCESSOR: any = {
   selector: 'cui-checkbox',
   templateUrl: './checkbox.component.html' ,
   styles: [],
-  providers: [CUSTOM_INPUT_CONTROL_VALUE_ACCESSOR]
+  providers: [CUSTOM_CHECKBOX_CONTROL_VALUE_ACCESSOR]
 })
 export class CheckboxComponent implements ControlValueAccessor {
 
-  writeValue(obj: any): void {
-    this.selectedItem = obj;
-  }
-  registerOnChange(fn: any): void {
-    this._onChange = fn;
-  }
-  registerOnTouched(fn: any): void {
-    this._onTouched = fn;
-  }
-
-  // call if value was changed inside our component
-  private _onChange = (_: any) => {};
-  // call if input was "touched"
-  private _onTouched = () => {};
-
-    /** @option Optional css class string | ''  */
+  /** @prop String value that corresponds with Checkbox  | '' */
+  @Input() value: any = '';
+ /** @prop index of the checkbox in tab order */
+  @Input() tabindex: number = 0;
+  /** @prop angular form control */
+  @Input() formControl: FormControl;
+  /** @prop Optional css class string | ''  */
   @Input() public class: string = '';
-    /** @option Sets the disabled attribute of the Input | false */
+  /** @prop Sets the disabled attribute of the Input | false */
   @Input() public disabled: boolean = false;
-  /** @option Optional indeterminate capabilities of checkbox | false */
+  /** @prop Optional indeterminate capabilities of checkbox | false */
   @Input() public indeterminate: boolean = false;
-    /** @option Input label text | '' */
+    /** @prop Input label text | '' */
   @Input() public label: string = '';
-  /** @option Set the level of nested checkboxes | 0 */
+  /** @prop Set the level of nested checkboxes | 0 */
   @Input() public nestedLevel: number = 0;
-  /** @option Optional required setting for Checkbox input | false */
+  /** @prop Optional required setting for Checkbox input | false */
   @Input() public required: boolean = false;
-  /** @option Unique HTML ID. Used for tying label to HTML input | '' */
+  /** @prop Unique HTML ID. Used for tying label to HTML input | '' */
   @Input() public htmlId: string = '';
-  /** @option sets value of the Checkbox input element | false */
+  /** @prop sets value of the Checkbox input element | false */
   @Input() public selectedItem: boolean = false;
-  /** @option Sets the attribute name to the Checkbox input element | '' */
+  /** @prop Sets the attribute name to the Checkbox input element | '' */
   @Input() public name: string = '';
 
-  /** @option optional emitter to invoke an onChange handler when checkbox toggles */
-  @Output() onSelectItem = new EventEmitter<any>();
+  /** @prop optional emitter to invoke an onChange handler when checkbox toggles */
+  @Output() onChange: EventEmitter<any> = new EventEmitter();
 
-  constructor() { }
+  list: any;
 
-  ngOnInit() {
+  checked: boolean = false;
 
+
+  constructor(private cdr: ChangeDetectorRef) { }
+
+  onListChange: Function = () => {};
+
+  onListTouched: Function = () => {};
+
+  writeValue(list: any) : void {
+    this.list = list;
+    this.checked = this.isChecked();
+    this.cdr.markForCheck();
   }
 
-  ngOnChanges(changes: SimpleChanges){
+  registerOnChange(fn: Function): void {
+    this.onListChange = fn;
+  }
 
+  registerOnTouched(fn: Function): void {
+    this.onListTouched = fn;
+  }
+
+  onClick(e) {
+    event.preventDefault();
+
+    if(this.disabled) {
+      return;
+    }
+
+    this.checked = !this.checked;
+    this.updateList();
+  }
+
+  updateList() {
+
+    if(this.indeterminate){
+      return;
+    }
+
+    if(this.checked){
+      this.addCheck();
+    }
+    else{
+      this.uncheck();
+    }
+
+    this.onListChange(this.list);
+
+    if(this.formControl) {
+      this.formControl.setValue(this.list);
+    }
+    this.onChange.emit(this.checked);
+  }
+
+  handleChange(event) {
+    this.checked = event.target.checked;
+    this.updateList();
+  }
+
+  isChecked(): boolean {
+    return this.list && this.list.indexOf(this.value) > -1;
+  }
+
+  uncheck() {
+    this.list = this.list.filter(check => check !== this.value);
+  }
+
+  addCheck() {
+    if(this.list){
+      this.list = [...this.list, this.value];
+    }
+    else {
+      this.list = [this.value];
+    }
   }
 
   get wrapperClasses() {
@@ -73,13 +133,6 @@ export class CheckboxComponent implements ControlValueAccessor {
     return {
       ['indeterminate']: this.indeterminate,
     };
-  }
-
-  toggleCheckbox(e) {
-    e.preventDefault();
-    if(!this.disabled){
-      this.onSelectItem.emit(e)
-    }
   }
 }
 

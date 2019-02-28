@@ -7,6 +7,13 @@ import { SpinnerModule } from '@collab-ui/angular';
 import { LoadingModule } from '@collab-ui/angular';
 import { ButtonModule } from '@collab-ui/angular';
 
+import { TabModule } from '@collab-ui/angular';
+import { TabContentModule } from '@collab-ui/angular';
+import { TabHeaderModule } from '@collab-ui/angular';
+import { TabListModule } from '@collab-ui/angular';
+import { TabPaneModule } from '@collab-ui/angular';
+import { TabsModule } from '@collab-ui/angular';
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { PlaygroundComponent } from './playground/playground.component';
@@ -25,6 +32,12 @@ import { PlaygroundComponent } from './playground/playground.component';
     SpinnerModule,
     ButtonModule,
     LoadingModule,
+    TabModule,
+    TabContentModule,
+    TabHeaderModule,
+    TabListModule,
+    TabPaneModule,
+    TabsModule
   ],
   providers: [],
   bootstrap: [AppComponent],

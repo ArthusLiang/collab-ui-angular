@@ -8,3 +8,5 @@ export * from './list-item-section';
 export * from './spinner';
 export * from './loading';
 export * from './button';
+
+export * from './tabs';

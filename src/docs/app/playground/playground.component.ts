@@ -4,12 +4,30 @@ import { Validators } from '@angular/forms';
 
 @Component({
   selector: 'docs-playground',
-  templateUrl: './playground.component.html',
+  template: `
+    <example-checkbox-default></example-checkbox-default>
+
+    <example-checkbox-disabled></example-checkbox-disabled>
+
+    <example-checkbox-indeterminate></example-checkbox-indeterminate>
+
+    <example-checkbox-nested></example-checkbox-nested>
+
+    <example-radio-default></example-radio-default>
+
+    <example-radio-nested></example-radio-nested>
+
+    <example-radio-disabled></example-radio-disabled>
+  `,
   styleUrls: ['./playground.component.scss']
 })
 export class PlaygroundComponent {
 
   checkedValues: string[] = ['val1','val2'];
+
+
+  //Radio NgModel example
+  selectedValue: string;
 
   checked: boolean = false;
 
@@ -21,25 +39,5 @@ export class PlaygroundComponent {
     'maxlength': 'This field cant be more than 12 chars',
     'email': "Not a valid email"
   }
-
-  myForm;
-
-  constructor(private fb: FormBuilder) {
-    this.myForm = this.fb.group({
-      radioControl: ['Option 2', [Validators.required]]
-    })
-
-    console.log(this.myForm.value)
-
-    console.log(this.checkedValues);
-
-  }
-
-  findSelected(){
-    console.log(this.myForm.value);
-  }
-
-  fireThis(){
-    alert('hit');
-  }
 }
+

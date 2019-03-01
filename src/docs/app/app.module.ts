@@ -61,8 +61,7 @@ import { ExamplesModule } from 'src/lib/examples.module';
     ButtonModule,
     LoadingModule,
     CheckboxModule,
-    RadioModule
-    CheckboxModule
+    RadioModule,
     ModalBodyModule,
     ModalFooterModule,
     ModalHeaderModule,

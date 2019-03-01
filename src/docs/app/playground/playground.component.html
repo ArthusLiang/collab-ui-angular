@@ -45,7 +45,26 @@
 </form>
 
 
-<h3>Selected Radio Value: {{ myForm.value.radioControl }}</h3>
+<h3>Form Control Selected Radio Value: {{ myForm.value.radioControl }}</h3>
+
+<cui-radio
+  name="cisco1"
+  label="Test 1"
+  value="Test 1"
+  [(ngModel)]="selectedValue"
+  htmlId="test1">
+</cui-radio>
+
+<cui-radio
+  name="cisco1"
+  label="Test 2"
+  value="Test 2"
+  [(ngModel)]="selectedValue"
+  htmlId="test2">
+</cui-radio>
+
+<h3>NgModel Radio Selected Value: {{ selectedValue }} </h3>
+
 
 <!-- <button (click) ="findSelected()" >Find Selected</button> -->
 
@@ -77,12 +96,11 @@
 <cui-checkbox
   name="TDG"
   value="Nested val4"
-  label="Value 4"
+  label="Nested Value 4"
   [(ngModel)]="checkedValues"
   htmlId="val4"
   [nestedLevel]="1">
 </cui-checkbox>
-
 
 
 <cui-checkbox

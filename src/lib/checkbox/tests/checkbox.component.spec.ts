@@ -1,9 +1,9 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CheckboxComponent } from './checkbox.component';
+import { CheckboxComponent } from '../checkbox.component';
 import { FormsModule } from '@angular/forms';
-import { InputHelperModule } from '../input-helper'
-import { LabelModule } from '../label';
+import { InputHelperModule } from '../../input-helper'
+import { LabelModule } from '../../label';
 
 describe('CheckboxComponent', () => {
   let component: CheckboxComponent;
@@ -35,7 +35,7 @@ describe('CheckboxComponent', () => {
     const label = inputNativeElement.querySelector('label');
 
     expect(label.className).toContain("cui-checkbox__label");
-    expect(label.innerText).toBe("Label Text");
+    expect(label.textContent).toMatch("Label Text");
   });
 
 

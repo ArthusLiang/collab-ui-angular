@@ -9,7 +9,37 @@ const CUSTOM_CHECKBOX_CONTROL_VALUE_ACCESSOR: any = {
 
 @Component({
   selector: 'cui-checkbox',
-  templateUrl: './checkbox.component.html' ,
+  template: `
+    <div
+      class="cui-input-group cui-checkbox"
+      [ngClass]="wrapperClasses"
+    >
+      <input
+        class="cui-input cui-checkbox__input"
+        [ngClass]="inputClasses"
+        type="checkbox"
+        (change)="handleChange($event)"
+        [value]="value"
+        [checked]="checked"
+        [name]="name"
+        [attr.id]="htmlId"
+        [attr.tabindex]="tabindex"
+        [disabled]="disabled"
+        [required]="required"
+      />
+
+      <label
+        *ngIf="label"
+        class="cui-checkbox__label"
+        for="htmlId"
+        (click)="onClick($event)"
+      >
+        <span>{{label}}</span>
+      </label>
+
+      <ng-content></ng-content>
+    </div>
+  ` ,
   styles: [],
   providers: [CUSTOM_CHECKBOX_CONTROL_VALUE_ACCESSOR]
 })
@@ -17,7 +47,7 @@ export class CheckboxComponent implements ControlValueAccessor {
 
   /** @prop String value that corresponds with Checkbox  | '' */
   @Input() value: any = '';
- /** @prop index of the checkbox in tab order */
+  /** @prop index of the checkbox in tab order */
   @Input() tabindex: number = 0;
   /** @prop angular form control */
   @Input() formControl: FormControl;
@@ -27,7 +57,7 @@ export class CheckboxComponent implements ControlValueAccessor {
   @Input() public disabled: boolean = false;
   /** @prop Optional indeterminate capabilities of checkbox | false */
   @Input() public indeterminate: boolean = false;
-    /** @prop Input label text | '' */
+  /** @prop Input label text | '' */
   @Input() public label: string = '';
   /** @prop Set the level of nested checkboxes | 0 */
   @Input() public nestedLevel: number = 0;
@@ -106,7 +136,7 @@ export class CheckboxComponent implements ControlValueAccessor {
   }
 
   isChecked(): boolean {
-    return this.list && this.list.indexOf(this.value) > -1;
+    return this.list && this.list.includes(this.value);
   }
 
   uncheck() {
@@ -135,123 +165,3 @@ export class CheckboxComponent implements ControlValueAccessor {
     };
   }
 }
-
-
-/**
-* @component checkbox
-* @section default
-* @angular
-*
-
-<cui-checkbox
-  label="default checkbox"
-  [(selectedItem)]="isSelected"
-  (onSelectItem)="funcToCallInParent()"
->
-</cui-checkbox>
-
-**/
-
-
-/**
-* @component checkbox
-* @section disabled
-* @angular
-*
-
-<cui-checkbox
-  label="disabled checkbox"
-  [(selectedItem)]="isSelected"
-  (onSelectItem)="funcToCallInParent()"
-  [disabled]="true"
->
-</cui-checkbox>
-
-**/
-
-
-/**
-* @component checkbox
-* @section indeterminate
-* @angular
-*
-
-<cui-checkbox
-  label="indeterminate label"
-  [(selectedItem)]="isSelected"
-  (onSelectItem)="funcToCallInParent()"
-  [indeterminate]="true"
->
-</cui-checkbox>
-
-**/
-
-
-/**
-* @component checkbox
-* @section nested
-* @angular
-*
-
-<cui-checkbox
-  label="Parent Checkbox"
-  [(selectedItem)]="isSelected"
-  (onSelectItem)="funcToCallInParent()"
->
-</cui-checkbox>
-
-<cui-checkbox
-  label="Child Checkbox Nested 1 Level"
-  [(selectedItem)]="isSelected"
-  (onSelectItem)="funcToCallInParent()"
-  [nestedLevel]="1"
->
-</cui-checkbox>
-
-<cui-checkbox
-  label="Child Checkbox Nested 2 Levels"
-  [(selectedItem)]="isSelected"
-  (onSelectItem)="funcToCallInParent()"
-  [nestedLevel]="2"
->
-</cui-checkbox>
-
-<cui-checkbox
-  label="Child Checkbox Nested 3 Levels"
-  [(selectedItem)]="isSelected"
-  (onSelectItem)="funcToCallInParent()"
-  [nestedLevel]="3"
->
-</cui-checkbox>
-
-**/
-
-
-/**
-* @component checkbox
-* @section group
-* @angular
-*
-
-<div class="cui-checkbox-group">
-  <cui-checkbox
-    label="me"
-    [(selectedItem)]="isSelected"
-    (onSelectItem)="funcToCallInParent()"
-  >
-  </cui-checkbox>
-  <cui-checkbox
-    label="you"
-    [(selectedItem)]="isSelected"
-    (onSelectItem)="funcToCallInParent()"
-  >
-  </cui-checkbox>
-  <cui-checkbox
-    label="us"
-    [(selectedItem)]="isSelected"
-    (onSelectItem)="funcToCallInParent()"
-  >
-  </cui-checkbox>
-</div>
-
-**/

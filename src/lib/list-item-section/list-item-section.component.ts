@@ -23,7 +23,8 @@ export class ListItemSectionComponent implements OnInit {
 
   ngOnInit() {
     if (this.position && !this.isValidPosition()) {
-      throw new Error('cui-list-item-section: ListItemSection position must be one of the following: left, center, right, center-align');
+      throw new Error(`cui-list-item-section: ListItemSection position option
+        must be one of the following: left, center, right, center-align`);
     }
   }
 

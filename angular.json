@@ -155,14 +155,6 @@
             "project": "src/lib/ng-package.json"
           }
         },
-        "test": {
-          "builder": "@angular-devkit/build-angular:karma",
-          "options": {
-            "main": "src/lib/test.ts",
-            "tsConfig": "src/lib/tsconfig.spec.json",
-            "karmaConfig": "src/lib/karma.conf.js"
-          }
-        },
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {

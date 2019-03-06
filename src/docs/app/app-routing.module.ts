@@ -7,10 +7,14 @@ const routes: Routes = [
     path: 'playground',
     component: PlaygroundComponent,
   },
+  {
+    path: '**',
+    component: PlaygroundComponent,
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

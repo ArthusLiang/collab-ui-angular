@@ -106,7 +106,5 @@ dist/
 /backup
 /uploads
 /yarn-*
-
-
-
+/test/coverage
 /package-lock.json

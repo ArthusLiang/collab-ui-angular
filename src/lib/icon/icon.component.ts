@@ -9,8 +9,8 @@ import {
 
 import { chain, find, trimEnd, uniqueId } from 'lodash';
 
-import * as iconNames from '@collab-ui/icons/data/iconNames.json';
-import * as  colors from '@collab-ui/core/data/colors.json';
+const iconNames = require('@collab-ui/icons/data/iconNames.json');
+const colors = require('@collab-ui/core/data/colors.json');
 
 @Component({
   selector: 'cui-icon',
@@ -94,7 +94,7 @@ export class IconComponent implements OnInit {
     const iconNameClass = `icon-${lookupIconName}`;
 
     // validate Icon name with Collab Toolkit
-    if ((<any>iconNames).default.indexOf(lookupIconName) < 0) {
+    if ((<any>iconNames).indexOf(lookupIconName) < 0) {
       this.consoleHandler('name-error', nameWithSize);
     }
 

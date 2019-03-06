@@ -4,7 +4,13 @@ import { TabsService } from './tabs.service';
 @Component({
   selector: 'cui-tab',
   template: `
-    <a href='javascript:void(0)' [attr.role]="role" (click)='whenPress.emit()' (keydown)='whenKeyDown.emit()' >
+    <a href='javascript:void(0)'
+      [attr.role]="role"
+      (click)='whenPress.emit()'
+      (keydown)='whenKeyDown.emit()'
+      [tabIndex]='ifFocus ? 0 : -1'
+      [attr.aria-current] = 'ifCurrent'
+      >
       <ng-content></ng-content>
     </a>
   `,
@@ -24,8 +30,8 @@ export class TabComponent implements OnInit {
   @Output() whenKeyDown = new EventEmitter();
 
   private tabIndex: number;
-  private ifCurrent: boolean;
-  private regIsEmpty: RegExp = /\r\n\t\s/g;
+  public ifCurrent: boolean;
+  public ifFocus: boolean;
 
   @HostBinding('class') get classes(): string {
     return 'cui-tab__item' +
@@ -33,6 +39,10 @@ export class TabComponent implements OnInit {
     `${(this.ifCurrent && ' active') || ''}` +
     `${(this.disabled && ' disabled') || ''}` +
     ``;
+  }
+
+  @HostBinding('tabIndex') get conTabIndex(): string {
+    return '-1';
   }
 
   @HostListener('click') select() {
@@ -44,8 +54,14 @@ export class TabComponent implements OnInit {
     private el: ElementRef
   ) {
     this.tabIndex = tabsService.registerTab();
-    this.tabsService.current$.subscribe(currentIndex => {
-      this.ifCurrent = this.tabIndex === currentIndex;
+    this.tabsService.current$.subscribe(index => {
+      this.ifCurrent = this.tabIndex === index;
+    });
+    this.tabsService.focusIndex$.subscribe(index => {
+      this.ifFocus = this.tabIndex === index;
+      if (this.ifFocus) {
+        this.el.nativeElement.getElementsByTagName('A')[0].focus();
+      }
     });
   }
 
